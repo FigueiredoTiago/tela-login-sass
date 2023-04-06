@@ -1,0 +1,110 @@
+body {
+  height: 100vh;
+  background-image: url("../../assets/car.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 300px; 
+  height: 450px;
+  @include device("l") {
+    width: 500px;
+    height: 550px;
+  }
+}
+
+.login-form {
+  min-height: 440px;
+  text-align: center;
+  background-color: #ffffff00;
+  backdrop-filter: blur(7px);
+  border-radius: 20px;
+  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.405);
+  @include device("l") {
+    width: 500px;
+    height: 480px;
+  }
+}
+
+.login-form div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  width: 100%;
+}
+
+.login-form input {
+  border: none;
+  width: 80%;
+  background-color: #ffffff1c;
+  backdrop-filter: blur(15px);
+  border-radius: 5px;
+  padding: 5px;
+  &:focus {
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.284);
+    outline: none;
+  }
+  &::placeholder {
+    color:#0D0D0D;
+  }
+}
+
+.button {
+  margin-top: 25px;
+  border: none;
+  border-radius: 25px;
+  width: 40%;
+  padding: 5px;
+  background-color: #00000046;
+  backdrop-filter: blur(10px);
+  color: #ddd;
+  cursor: pointer;
+  &:hover {
+    background-color: #00000066;
+  }
+}
+
+#nome, #senha {
+  margin-top: 30px;
+}
+
+.help {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.help span {
+  display: flex;
+  align-items: center;
+  font-size: .7rem;
+  cursor: pointer;
+  margin-bottom: 5px;
+  color: #d8d8d8;
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+
+span sup {
+  margin-right: 2px;
+}
+
+.title {
+  color: #0D0D0D;
+  font-style: italic;
+  margin-top: 10px;
+}
+

@@ -1,0 +1,137 @@
+// Variaveis do Grid
+$cols: 16;
+$gutter: 20px;
+//breakpoints
+$l-device: 1199px;
+$m-device: 759px;
+$s-device: 479px;
+// Box-sizing
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+// Mixins de Media queries
+
+@mixin device($device) {
+  @if $device == "l" {
+    @media screen and (min-width: $l-device) {
+      @content;
+    }
+  } @else if $device == "m" {
+    @media screen and (min-width: $m-device) and (max-width: $l-device) {
+      @content;
+    }
+  } @else if $device == "s" {
+    @media screen and (max-width: $m-device) {
+      @content;
+    }
+  }
+}
+
+// funcao do grid
+
+@function grid($col, $offset: false) {
+  $width: $col / $cols * 100%;
+  $result: calc(#{$width} - #{$gutter});
+  @if $offset == offset {
+    $gutter: $gutter / 2;
+    $result: calc(#{$width} + #{$gutter});
+  }
+  @return $result;
+}
+
+//gerador das classes do grid do 1 ao 12
+
+@for $i from 1 through $cols {
+  .grid-#{$i} {
+    width: grid($i);
+  }
+}
+
+//mixin com estrutura do grid
+
+@mixin grid-structure {
+  float: left;
+  min-height: 1px;
+  margin-left: $gutter / 2;
+  margin-right: $gutter / 2;
+  @include device("s") {
+    width: 100%;
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+//seletor seleciona todos os itens que tem a classe grid- e aplica o mixin
+
+[class*="grid-"] {
+  @include grid-structure;
+}
+
+//gerador de classes de offset do 1 ao 12
+
+@for $i from 1 through $cols {
+  .offset-#{$i} {
+    margin-left: grid($i, offset);
+    @extend %offset;
+  }
+}
+
+@include device("s") {
+  %offset {
+    margin-left: 0;
+  }
+}
+
+//mixin de clearfix
+
+@mixin clearfix {
+  &:after,
+  &:before {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+//mixin container
+
+@mixin container {
+  max-width: $l-device;
+  margin: 0 auto;
+  position: relative;
+  @include device("m") {
+    max-width: $m-device;
+  }
+  @include device("s") {
+    max-width: $s-device;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @include clearfix;
+}
+
+//
+.container {
+  @include container;
+}
+
+//row
+
+@mixin row {
+  position: relative;
+  margin-left: -$gutter / 2;
+  margin-right: -$gutter / 2;
+  @include device("s") {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  @include clearfix;
+}
+
+.row {
+  @include row;
+}
