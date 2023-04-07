@@ -210,6 +210,12 @@ body {
   width: 300px;
   height: 450px;
 }
+@media screen and (min-width: 1199px) {
+  .content {
+    width: 350px;
+    height: 550px;
+  }
+}
 
 .login-form {
   min-height: 440px;
@@ -219,6 +225,12 @@ body {
           backdrop-filter: blur(7px);
   border-radius: 20px;
   box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.405);
+}
+@media screen and (min-width: 1199px) {
+  .login-form {
+    width: 350px;
+    height: 550px;
+  }
 }
 
 .login-form div {
